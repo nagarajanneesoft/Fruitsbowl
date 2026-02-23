@@ -287,8 +287,7 @@
         line-height: 1.5;
         color: #666;
       }
-      .order-btn,
-      .cart-btn {
+      .order-btn {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 0.85rem;
@@ -300,8 +299,7 @@
         transition: all 0.3s ease;
         box-shadow: 0 2px 8px rgba(86, 171, 47, 0.3);
       }
-      .order-btn:hover,
-      .cart-btn:hover {
+      .order-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(86, 171, 47, 0.4);
         background: linear-gradient(45deg, #4a8f2a, #96d658);
@@ -916,16 +914,6 @@
           transform: translateY(0);
         }
       }
-      @keyframes slideInRight {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
       .delivery-marquee {
         font-size: 0.8rem;
         font-weight: 500;
@@ -955,63 +943,6 @@
         75% {
           opacity: 0.3;
         }
-      }
-      .cart-icon {
-        position: relative;
-        color: white;
-        text-decoration: none;
-        padding: 8px 12px;
-        border-radius: 12px;
-        background: rgba(86, 171, 47, 0.1);
-      }
-      .cart-icon:hover {
-        background: rgba(86, 171, 47, 0.2);
-      }
-      .cart-count {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: #dc3545;
-        color: white;
-        border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        font-size: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-      }
-      .cart-items {
-        max-height: 300px;
-        overflow-y: auto;
-      }
-      .cart-item {
-        background: #f8f9fa;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        padding: 10px;
-      }
-      .cart-item:hover {
-        background: #e9ecef;
-      }
-      .cart-item .badge {
-        font-size: 0.75rem;
-      }
-      .cart-item .btn-danger {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-      }
-      .cart-message {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: linear-gradient(45deg, #28a745, #20c997);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        z-index: 1000;
-        animation: slideInRight 0.3s ease;
       }
     </style>
   </head>
@@ -1050,12 +981,6 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#products">Love Bowls</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li>
-              <a href="cart.html" class="cart-icon" id="headerCart">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
@@ -1085,28 +1010,13 @@
                 style="border-radius: 10px; height: 200px; object-fit: cover"
               />
               <h4>Fresh Cut Fruits</h4>
-              <p>Ready To Eat | Made Fresh Daily | 150g</p>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
+              <p>Daily fresh cut fruits hygienically prepared</p>
+              <button
+                class="btn btn-success btn-sm mt-2 order-btn"
+                data-product="Fresh Cut Fruits"
               >
-                <span class="fw-bold text-success">₹30</span>
-                <small class="text-muted">Fresh & Hygienic</small>
-              </div>
-              <div class="d-flex gap-2 justify-content-center">
-                <button
-                  class="btn btn-success btn-sm mt-2 order-btn"
-                  data-product="Fresh Cut Fruits"
-                >
-                  Order Now
-                </button>
-                <button
-                  class="btn btn-warning btn-sm mt-2 cart-btn"
-                  data-product="Fresh Cut Fruits"
-                  data-price="30"
-                >
-                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
-                </button>
-              </div>
+                Order Now
+              </button>
             </div>
           </div>
 
@@ -1114,103 +1024,59 @@
             <div class="card product-card p-3 text-center fade-in">
               <img
                 src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Fresh Sprouts
-"
+                alt="Fresh Sprouts"
                 class="card-img-top mb-3"
                 style="border-radius: 10px; height: 200px; object-fit: cover"
               />
               <h4>Fresh Sprouts</h4>
-              <p>Ready To Eat | Made Fresh Daily | 150g</p>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
+              <p>
+                Protein rich healthy sprouts for fitness, Protein rich healthy
+                sprouts for fitness
+              </p>
+              <button
+                class="btn btn-success btn-sm mt-2 order-btn"
+                data-product="Fresh Sprouts"
               >
-                <span class="fw-bold text-success">₹30</span>
-                <small class="text-muted">Sweet & Juicy</small>
-              </div>
-              <div class="d-flex gap-2 justify-content-center">
-                <button
-                  class="btn btn-success btn-sm mt-2 order-btn"
-                  data-product="Fresh Sprouts"
-                >
-                  Order Now
-                </button>
-                <button
-                  class="btn btn-warning btn-sm mt-2 cart-btn"
-                  data-product="Fresh Sprouts"
-                  data-price="30"
-                >
-                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
-                </button>
-              </div>
+                Order Now
+              </button>
             </div>
           </div>
 
           <div class="col-md-3">
             <div class="card product-card p-3 text-center fade-in">
               <img
-                src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="Fresh Juice"
                 class="card-img-top mb-3"
                 style="border-radius: 10px; height: 200px; object-fit: cover"
               />
               <h4>Fresh Juice</h4>
-              <p>Ready To Eat | Made Fresh Daily | 150g</p>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
+              <p>100% natural juices without preservatives</p>
+              <button
+                class="btn btn-success btn-sm mt-2 order-btn"
+                data-product="Fresh Juice"
               >
-                <span class="fw-bold text-success">₹30</span>
-                <small class="text-muted">Variety of Fruits</small>
-              </div>
-              <div class="d-flex gap-2 justify-content-center">
-                <button
-                  class="btn btn-success btn-sm mt-2 order-btn"
-                  data-product="Fresh Juice"
-                >
-                  Order Now
-                </button>
-                <button
-                  class="btn btn-warning btn-sm mt-2 cart-btn"
-                  data-product="Fresh Juice"
-                  data-price="30"
-                >
-                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
-                </button>
-              </div>
+                Order Now
+              </button>
             </div>
           </div>
 
           <div class="col-md-3">
             <div class="card product-card p-3 text-center fade-in">
               <img
-                src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Fresh Fruits Salad & Veg Salad
-"
+                src="https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Fresh Fruits Salad & Veg Salad"
                 class="card-img-top mb-3"
                 style="border-radius: 10px; height: 200px; object-fit: cover"
               />
               <h4>Fresh Fruits Salad & Veg Salad</h4>
-              <p>Ready To Eat | Made Fresh Daily | 150g</p>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
+              <p>Delicious combination of fresh fruits & vegetables</p>
+              <button
+                class="btn btn-success btn-sm mt-2 order-btn"
+                data-product="Fresh Fruits Salad & Veg Salad"
               >
-                <span class="fw-bold text-success">₹30</span>
-                <small class="text-muted">Tropical & Sweet</small>
-              </div>
-              <div class="d-flex gap-2 justify-content-center">
-                <button
-                  class="btn btn-success btn-sm mt-2 order-btn"
-                  data-product="Fresh Fruits Salad & Veg Salad"
-                >
-                  Order Now
-                </button>
-                <button
-                  class="btn btn-warning btn-sm mt-2 cart-btn"
-                  data-product="Fresh Fruits Salad & Veg Salad"
-                  data-price="30"
-                >
-                  <i class="fas fa-shopping-cart me-1"></i>Add to Cart
-                </button>
-              </div>
+                Order Now
+              </button>
             </div>
           </div>
         </div>
@@ -1332,19 +1198,9 @@
                     >
                     <select class="form-select border-0 bg-light" required>
                       <option value="">Choose your favorite bowl...</option>
-                      <option
-                        value="Fresh Sprouts
-
-"
-                      >
-                        Fresh Sprouts
-                      </option>
-                      <option
-                        value="Fresh Juice
-"
-                      >
-                        Fresh Juice
-                      </option>
+                      <option value="Fresh Cut Fruits">Fresh Cut Fruits</option>
+                      <option value="Fresh Sprouts">Fresh Sprouts</option>
+                      <option value="Fresh Juice">Fresh Juice</option>
                       <option value="Fresh Fruits Salad & Veg Salad">
                         Fresh Fruits Salad & Veg Salad
                       </option>
@@ -1462,34 +1318,6 @@
       <i class="fas fa-phone"></i>
     </a>
 
-    <!-- Cart Modal -->
-    <div class="modal-overlay" id="cartModal">
-      <div class="order-modal">
-        <button class="close-modal" onclick="closeCartModal()">&times;</button>
-        <div class="modal-header">
-          <div class="header_flex">
-            <h6>Your Cart</h6>
-            <span class="badge bg-success" id="cartItemCount">0 items</span>
-          </div>
-        </div>
-        <div id="cartItems" class="cart-items">
-          <p class="text-center text-muted">Your cart is empty</p>
-        </div>
-        <div class="modal-footer">
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-bold">Total: ₹<span id="cartTotal">0</span></span>
-            <button
-              type="button"
-              class="btn-submit"
-              onclick="proceedToCheckout()"
-            >
-              Checkout
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Order Modal -->
     <div class="modal-overlay" id="orderModal">
       <div class="order-modal">
@@ -1501,18 +1329,6 @@
           </div>
         </div>
         <form id="orderForm">
-          <div class="form-group">
-            <label for="product">Select Product *</label>
-            <select id="product" name="product" required>
-              <option value="">Choose your favorite bowl...</option>
-              <option value="Fresh Cut Fruits">Fresh Cut Fruits</option>
-              <option value="Fresh Sprouts">Fresh Sprouts</option>
-              <option value="Fresh Juice">Fresh Juice</option>
-              <option value="Fresh Fruits Salad & Veg Salad">
-                Fresh Fruits Salad & Veg Salad
-              </option>
-            </select>
-          </div>
           <div class="form-group">
             <label for="name">Name *</label>
             <input
@@ -1534,24 +1350,31 @@
             />
           </div>
           <div class="form-group">
+            <label for="alternate">Alternate Number</label>
+            <input
+              type="tel"
+              id="alternate"
+              name="alternate"
+              placeholder="Enter alternate number (optional)"
+            />
+          </div>
+          <div class="form-group">
             <label for="address">Address *</label>
             <textarea
               class="form-control"
               rows="5"
-              id="address"
-              name="address"
+              id="comment"
+              name="text"
               placeholder="Enter your delivery address"
             ></textarea>
           </div>
           <div class="form-group">
-            <label for="quantity">Quantity</label>
+            <label for="landmark">Landmark</label>
             <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              placeholder="How many bowls?"
-              min="1"
-              value="1"
+              type="text"
+              id="landmark"
+              name="landmark"
+              placeholder="Enter nearby landmark (optional)"
             />
           </div>
           <div class="modal-footer">
@@ -1585,77 +1408,6 @@
         document.getElementById("orderForm").reset();
       }
 
-      // Cart functionality
-      let cart = JSON.parse(localStorage.getItem("fruitsCart")) || [];
-      let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-
-      // Initialize cart count display
-      function updateCartCount() {
-        const cartCountElement = document.getElementById("cartCount");
-        if (cartCountElement) {
-          cartCountElement.textContent = cart.reduce(
-            (total, item) => total + item.quantity,
-            0,
-          );
-        }
-      }
-
-      // Cart button click handlers
-      const cartButtons = document.querySelectorAll(".cart-btn");
-      cartButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-          const productName = this.getAttribute("data-product");
-          const productPrice = parseInt(this.getAttribute("data-price"));
-
-          // Add to cart
-          const existingItem = cart.find((item) => item.name === productName);
-          if (existingItem) {
-            existingItem.quantity += 1;
-          } else {
-            cart.push({
-              name: productName,
-              price: productPrice,
-              quantity: 1,
-            });
-          }
-
-          // Save to localStorage
-          localStorage.setItem("fruitsCart", JSON.stringify(cart));
-          updateCartCount();
-
-          // Show success message
-          showCartMessage(`${productName} added to cart!`);
-        });
-      });
-
-      function showCartMessage(message) {
-        const messageDiv = document.createElement("div");
-        messageDiv.className = "cart-message";
-        messageDiv.innerHTML = `
-          <div class="d-flex align-items-center">
-            <i class="fas fa-check-circle me-2"></i>
-            <span>${message}</span>
-          </div>
-        `;
-        messageDiv.style.cssText = `
-          position: fixed;
-          top: 100px;
-          right: 20px;
-          background: linear-gradient(45deg, #28a745, #20c997);
-          color: white;
-          padding: 15px 20px;
-          border-radius: 10px;
-          z-index: 1000;
-          animation: slideInRight 0.3s ease;
-        `;
-
-        document.body.appendChild(messageDiv);
-
-        setTimeout(() => {
-          messageDiv.remove();
-        }, 2000);
-      }
-
       // Order button click handlers
       document.addEventListener("DOMContentLoaded", function () {
         const orderButtons = document.querySelectorAll(".order-btn");
@@ -1672,14 +1424,17 @@
           e.preventDefault();
 
           const formData = {
-            product: document.getElementById("product").value,
+            product: document
+              .getElementById("selectedProduct")
+              .textContent.replace("Product: ", ""),
             name: document.getElementById("name").value,
             mobile: document.getElementById("mobile").value,
+            alternate: document.getElementById("alternate").value,
             address: document.getElementById("address").value,
-            quantity: document.getElementById("quantity").value,
+            landmark: document.getElementById("landmark").value,
           };
 
-          // Here you can send order data to your server or WhatsApp
+          // Here you can send the order data to your server or WhatsApp
           console.log("Order Data:", formData);
 
           // Show success message
@@ -1694,8 +1449,10 @@
             closeOrderModal();
           }
         });
+      });
 
-        // Quick Order Form Handler
+      // Quick Order Form Handler
+      document.addEventListener("DOMContentLoaded", function () {
         const quickOrderForm = document.getElementById("quickOrderForm");
         if (quickOrderForm) {
           quickOrderForm.addEventListener("submit", function (e) {
@@ -1775,10 +1532,6 @@
         );
         animatedElements.forEach((el) => observer.observe(el));
       });
-    </script>
-
-    <script>
-      document.getElementById("cartCount").innerText = 0;
     </script>
   </body>
 </html>

@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Love Fruits Bowl</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        padding: 80px 0 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        transition: all 0.3s ease;
+      }
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; */
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #56ab2f;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 20px;
+      }
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .nav-menu a:hover {
+        background: #56ab2f;
+        color: white;
+      }
+      .cart-container {
+        max-width: 1000px;
+        margin: 100px auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 30px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cart-container.empty {
+        display: none;
+      }
+      .cart-header {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        color: white;
+        margin: -25px -25px 25px -25px;
+        border-radius: 15px 15px 0 0;
+      }
+      .cart-header h2 {
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.5rem;
+      }
+      .cart-items {
+        margin-bottom: 30px;
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+      }
+      .cart-item:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+      }
+      .item-info {
+        flex: 1;
+      }
+      .item-name {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+      }
+      .item-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .quantity-btn {
+        background: #56ab2f;
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .quantity-btn:hover {
+        background: #4a9d5f;
+      }
+      .quantity-display {
+        font-weight: 600;
+        min-width: 40px;
+        text-align: center;
+      }
+      .item-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #28a745;
+      }
+      .remove-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .remove-btn:hover {
+        background: #c82333;
+      }
+      .cart-summary {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+      .checkout-btn {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .checkout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+      }
+      .empty-cart {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+      }
+      .empty-cart i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: #dee2e6;
+      }
+      .back-btn {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .back-btn:hover {
+        background: #5a6268;
+      }
+      @media (max-width: 768px) {
+        .cart-container {
+          margin: 80px 10px;
+          padding: 20px;
+        }
+        .cart-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .item-details {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header>
+      <div class="navbar-container">
+        <a href="index.html" class="logo">
+          <img
+            src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1"
+            alt="Love Fruits Bowl Logo"
+            class="logo-img"
+          />
+          Love Fruits Bowl
+        </a>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="cart.html" class="active">Cart</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Cart Container -->
+    <div class="cart-container">
+      <div class="cart-header">
+        <h6><i class="fas fa-shopping-cart me-2"></i>Your Shopping Cart</h6>
+      </div>
+
+      <div id="cartItems" class="cart-items">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+
+      <div id="cartSummary" class="cart-summary">
+        <!-- Cart summary will be dynamically added here -->
+      </div>
+
+      <div style="text-align: center">
+        <a href="index.html" class="back-btn">
+          <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+        </a>
+      </div>
+    </div>
+
+    <script>
+        // Get cart data from localStorage
+        let cart = JSON.parse(localStorage.getItem("fruitsCart")) || [];
+
+        function updateCartDisplay() {
+            const cartContentElement = document.getElementById('cartContent');
+            const cartSummaryElement = document.getElementById('cartSummary');
+            const cartContainer = document.querySelector('.cart-container');
+
+            if (cart.length === 0) {
+                cartContentElement.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious fresh fruits to get started!</p>
+                        <a href="index.html#products" class="back-btn">
+                            <i class="fas fa-arrow-left me-2"></i>Browse Products
+                        </a>
+                    </div>
+                `;
+                cartSummaryElement.innerHTML = '';
+                cartContainer.classList.add('empty');
+            } else {
+                let cartHTML = `
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Product</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group">
+                `;
+
+                let totalItems = 0;
+                let totalPrice = 0;
+
+                cart.forEach((item, index) => {
+                    totalItems += item.quantity;
+                    totalPrice += item.price * item.quantity;
+                    cartHTML += `
+                        <tr>
+                            <td class="item-name">${item.name}</td>
+                            <td class="item-price text-center">₹${item.price}</td>
+                            <td>
+                                <div class="quantity-controls d-flex justify-content-center gap-2">
+                                    <button class="quantity-btn btn-sm" onclick="updateQuantity(${index}, -1)">−</button>
+                                    <span class="quantity-display">${item.quantity}</span>
+                                    <button class="quantity-btn btn-sm" onclick="updateQuantity(${index}, 1)">+</button>
+                                </div>
+                            </td>
+                            <td class="item-price text-center">₹${item.price * item.quantity}</td>
+                            <td class="text-center">
+                                <button class="remove-btn btn-sm" onclick="removeFromCart(${index})">
+                                    <i class="fas fa-trash me-1"></i> Remove
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                cartHTML += `
+                        </tbody>
+                    </table>
+                `;
+
+                cartContentElement.innerHTML = cartHTML;
+
+                cartSummaryElement.innerHTML = `
+                    <div class="summary-row">
+                        <span>Total Items:</span>
+                        <span>${totalItems}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>₹${totalPrice}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery:</span>
+                        <span>Free (Above ₹199)</span>
+                    </div>
+                    <div class="summary-row" style="font-size: 1.3rem; font-weight: 700; color: #28a745;">
+                        <span>Grand Total:</span>
+                        <span>₹${totalPrice}</span>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="#" class="checkout-btn" onclick="clearCart()">
+                            <i class="fas fa-trash me-2"></i>Clear Cart
+                        </a>
+                        <a href="#" class="checkout-btn" onclick="proceedToCheckout()">
+                            <i class="fas fa-whatsapp me-2"></i>Checkout via WhatsApp
+                        </a>
+                    </div>
+                `;
+
+                cartContainer.classList.remove('empty');
+            }
+        }
+
+        function updateQuantity(index, change) {
+            const item = cart[index];
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                saveCart();
+                updateCartDisplay();
+            }
+        } else {
+          saveCart();
+          updateCartDisplay();
+        }
+      }
+
+      function removeFromCart(index) {
+        const item = cart[index];
+        cart.splice(index, 1);
+        saveCart();
+        updateCartDisplay();
+        showNotification(`${item.name} removed from cart!`);
+      }
+
+      function clearCart() {
+        if (confirm('Are you sure you want to clear your entire cart?')) {
+            saveCart();
+            updateCartDisplay();
+            showNotification(`${item.name} removed from cart!`);
+        }
+
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your entire cart?')) {
+                cart = [];
+                saveCart();
+                updateCartDisplay();
+                showNotification('Cart cleared successfully!');
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement("div");
+            notification.className =
+              "alert alert-success alert-dismissible fade show position-fixed";
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                animation: slideInRight 0.3s ease;
+            `;
+            notification.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>${message}</span>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            // Auto-remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+      function saveCart() {
+        localStorage.setItem("fruitsCart", JSON.stringify(cart));
+      }
+
+      function proceedToCheckout() {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        // Create WhatsApp message with cart items
+        let cartMessage = "*Cart Order - Love Fruits Bowl*%0A%0A";
+        let totalAmount = 0;
+
+        cart.forEach((item) => {
+          cartMessage += `🥗 ${item.name} (Qty: ${item.quantity}) - ₹${item.price * item.quantity}%0A`;
+          totalAmount += item.price * item.quantity;
+        });
+
+        cartMessage += `%0A💰 Total Amount: ₹${totalAmount}%0A%0A`;
+        cartMessage += `🏠 Delivery Address: [Please provide your address]%0A%0A`;
+        cartMessage += `*Please confirm this order*%0A`;
+        cartMessage += `✅ Yes - Confirm Order%0A`;
+        cartMessage += `❌ No - Cancel Order`;
+
+        const whatsappUrl = `https://wa.me/9047343441?text=${cartMessage}`;
+        window.open(whatsappUrl, "_blank");
+      }
+
+      // Initialize cart display
+      updateCartDisplay();
+    </script>
+  </body>
+</html>
