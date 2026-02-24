@@ -307,7 +307,6 @@ Continue Shopping
 
       updateCartDisplay();
 
-      // Start
       function proceedToCheckout() {
         const name = document.getElementById("custName").value.trim();
         const phone = document.getElementById("custPhone").value.trim();
@@ -319,7 +318,8 @@ Continue Shopping
           return;
         }
 
-        let msg = "*Cart Order - Love Fruits Bowl*\n\n";
+        let msg = "🛒 *Cart Order - Love Fruits Bowl*\n\n";
+        msg += "━━━━━━━━━━━━━━\n\n";
 
         let total = 0;
         let items = 0;
@@ -329,36 +329,40 @@ Continue Shopping
           total += item.price * item.quantity;
 
           msg += `🥗 ${item.name}\n`;
-          msg += `Qty: ${item.quantity}\n`;
-          msg += `₹${item.price * item.quantity}\n\n`;
+          msg += `   🔢 Qty: ${item.quantity}\n`;
+          msg += `   💰 ₹${item.price * item.quantity}\n\n`;
         });
 
         let deliveryFee = total >= 199 ? 0 : 20;
         let grandTotal = total + deliveryFee;
 
-        msg += `Total Items: ${items}\n`;
-        msg += `Subtotal: ₹${total}\n`;
-        msg += `Delivery Fee: ₹${deliveryFee}\n`;
-        msg += `💰 Total Amount: ₹${grandTotal}\n\n`;
+        msg += "━━━━━━━━━━━━━━\n";
+        msg += `📦 Total Items: ${items}\n`;
+        msg += `💵 Subtotal: ₹${total}\n`;
+        msg += `🚚 Delivery Fee: ₹${deliveryFee}\n`;
+        msg += `💰 *Total Amount: \u20B9" + ₹${grandTotal}*\n\n`;
 
+        msg += "━━━━━━━━━━━━━━\n";
         msg += `👤 Name: ${name}\n`;
         msg += `📞 Phone: ${phone}\n`;
         msg += `🏠 Address: ${address}\n`;
         msg += `💳 Payment: ${payment}\n\n`;
 
+        msg += "━━━━━━━━━━━━━━\n";
         msg += "Please confirm this order\n";
         msg += "✅ Yes - Confirm Order\n";
-        msg += "❌ No - Cancel Order";
+        msg += "❌ No - Cancel Order\n";
+        msg += "🙏 Thank you!";
 
         const whatsappURL = `https://wa.me/9047343441?text=${encodeURIComponent(msg)}`;
 
         window.open(whatsappURL, "_blank");
 
+        /* Close Modal Automatically */
         bootstrap.Modal.getInstance(
           document.getElementById("addressModal"),
         )?.hide();
       }
-      // End
     </script>
   </body>
 </html>
