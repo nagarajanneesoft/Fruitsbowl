@@ -319,7 +319,7 @@ Continue Shopping
           return;
         }
 
-        let msg = "*Cart Order - Love Fruits Bowl*\n\n";
+        let msg = "*Cart Order - Love Fruits Bowl*%0A%0A";
 
         let total = 0;
         let items = 0;
@@ -328,7 +328,7 @@ Continue Shopping
           items += item.quantity;
           total += item.price * item.quantity;
 
-          msg += `🥗 ${item.name}\n`;
+          msg += `> 🥗 ${item.name}\n`;
           msg += `Qty: ${item.quantity}\n`;
           msg += `₹${item.price * item.quantity}\n\n`;
         });
@@ -336,15 +336,15 @@ Continue Shopping
         let deliveryFee = total >= 199 ? 0 : 20;
         let grandTotal = total + deliveryFee;
 
-        msg += `Total Items: ${items}\n`;
-        msg += `Subtotal: ₹${total}\n`;
-        msg += `Delivery Fee: ₹${deliveryFee}\n`;
-        msg += `💰 Total Amount: ₹${grandTotal}\n\n`;
+        msg += `> 📦 Total Items: ${items}\n`;
+        msg += `> 💰 Subtotal: ₹${total}\n`;
+        msg += `> 🚚 Delivery Fee: ₹${deliveryFee}\n`;
+        msg += `> 💰 Total Amount: ₹${grandTotal}\n\n`;
 
-        msg += `👤 Name: ${name}\n`;
-        msg += `📞 Phone: ${phone}\n`;
-        msg += `🏠 Address: ${address}\n`;
-        msg += `💳 Payment: ${payment}\n\n`;
+        msg += `> 👤 Name: ${name}\n`;
+        msg += `> 📞 Phone: ${phone}\n`;
+        msg += `> 🏠 Address: ${address}\n`;
+        msg += `> 💳 Payment: ${payment}\n\n`;
 
         msg += "Please confirm this order\n";
         msg += "✅ Yes - Confirm Order\n";
