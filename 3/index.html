@@ -1821,9 +1821,14 @@
    PAGE LOAD INIT
 ================================ */
       document.addEventListener("DOMContentLoaded", () => {
+        // Clear cart on page refresh
+        localStorage.removeItem("fruitsCart");
+        cart = [];
+
+        // Initialize cart count
         updateCartCount();
 
-        // Sync quantities with existing cart
+        // Sync quantities with cart (will be 0 after clearing)
         syncQuantitiesWithCart();
 
         // Order button click handlers
