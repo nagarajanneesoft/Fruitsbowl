@@ -1,0 +1,2111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="" href="favicon.ico" />
+    <title>Love Fruits Bowl</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        transition: all 0.3s ease;
+      }
+      .navbar-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #56ab2f;
+        font-weight: 600;
+        font-size: 1rem;
+        font-family: "Space Grotesk", sans-serif;
+        letter-spacing: -0.01em;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
+      }
+      .logo:hover {
+        transform: scale(1.05);
+        color: #4a8f2a;
+      }
+      .logo-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 8px;
+        object-fit: cover;
+        border: 3px solid #56ab2f;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(86, 171, 47, 0.3);
+        animation: rotate360 3s linear infinite;
+      }
+      @keyframes rotate360 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .logo:hover .logo-img {
+        transform: rotate(5deg) scale(1.1);
+        border-color: #4a8f2a;
+        box-shadow: 0 4px 15px rgba(86, 171, 47, 0.5);
+      }
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 30px;
+      }
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        transform: translateZ(0);
+        font-family: "Inter", sans-serif;
+        font-size: 0.95rem;
+        letter-spacing: -0.01em;
+      }
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #56ab2f;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+      }
+      .nav-menu a:hover {
+        color: #56ab2f;
+        transform: translateY(-2px);
+      }
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        padding-top: 80px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #333;
+      }
+      .section-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        color: #333;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .hero h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        animation: fadeInDown 1s ease-out;
+      }
+      .hero {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        padding: 100px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("https://placehold.co/150");
+        opacity: 0.3;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .contact-heading {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 2rem !important;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .hero .subtitle {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.2rem;
+        color: #f8f9fa;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+      .hero .tagline {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        color: #ffffff;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+      .hero .btn-order {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 12px 35px;
+        border-radius: 50px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        border: none;
+        color: white;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+        animation: fadeInUp 1s ease-out 0.9s both;
+        transform: translateZ(0);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.02em;
+      }
+      .hero .btn-order:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(238, 90, 36, 0.6);
+        background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+      }
+      .hero .btn-order::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+      .hero .btn-order:hover::before {
+        left: 100%;
+      }
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .product-card {
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+      .product-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+      .product-card img {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
+      }
+      .product-card:hover img {
+        transform: scale(1.15);
+      }
+      .product-card h4 {
+        transition:
+          color 0.3s ease,
+          transform 0.3s ease;
+        font-size: 1.1rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .product-card:hover h4 {
+        color: #56ab2f;
+        transform: translateY(-2px);
+      }
+      .product-card p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #666;
+      }
+      .order-btn,
+      .cart-btn {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        padding: 8px 20px;
+        border-radius: 25px;
+        background: linear-gradient(45deg, #56ab2f, #a8e063);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(86, 171, 47, 0.3);
+      }
+      .order-btn:hover,
+      .cart-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(86, 171, 47, 0.4);
+        background: linear-gradient(45deg, #4a8f2a, #96d658);
+      }
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .order-modal {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .modal-overlay.active .order-modal {
+        transform: scale(1);
+        opacity: 1;
+      }
+      .modal-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+      .modal-header h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+      }
+      .modal-header p {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        color: #333;
+        font-size: 0.9rem;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: #56ab2f;
+        box-shadow: 0 0 0 3px rgba(86, 171, 47, 0.1);
+      }
+      .modal-footer {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+      }
+      .modal-footer button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .btn-submit {
+        background: linear-gradient(45deg, #56ab2f, #a8e063);
+        color: white;
+      }
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(86, 171, 47, 0.4);
+      }
+      .btn-cancel {
+        background: #f0f0f0;
+        color: #666;
+      }
+      .btn-cancel:hover {
+        background: #e0e0e0;
+      }
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .close-modal:hover {
+        color: #333;
+      }
+      footer {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        padding: 10px 0;
+      }
+      footer p {
+        padding: 0;
+        margin: 0;
+        color: #fff;
+        font-size: 0.8rem;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateZ(0);
+      }
+      .social-icon:hover {
+        transform: translateY(-3px) scale(1.1);
+      }
+      .social-icon.facebook {
+        background: #1877f2;
+      }
+      .social-icon.facebook:hover {
+        box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+      }
+      .social-icon.instagram {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+      }
+      .social-icon.instagram:hover {
+        box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+      }
+      .social-icon.twitter {
+        background: #1da1f2;
+      }
+      .social-icon.twitter:hover {
+        box-shadow: 0 6px 20px rgba(29, 161, 242, 0.4);
+      }
+      .social-icon.youtube {
+        background: #ff0000;
+      }
+      .social-icon.youtube:hover {
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+      }
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #25d366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        animation: pulse 2s infinite;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        color: white;
+        animation: none;
+      }
+      .phone-float {
+        position: fixed;
+        bottom: 30px;
+        right: 100px;
+        background: #007bff;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        animation: pulse 2s infinite 0.5s;
+      }
+      .phone-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        color: white;
+        animation: none;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        50% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6);
+        }
+        100% {
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s ease;
+      }
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s ease;
+      }
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero .subtitle {
+          font-size: 1rem;
+          letter-spacing: 2px;
+        }
+        .hero .tagline {
+          font-size: 0.9rem;
+        }
+        .hero .btn-order {
+          font-size: 0.85rem;
+          padding: 10px 25px;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .product-card h4 {
+          font-size: 1rem;
+        }
+        .product-card p {
+          font-size: 0.85rem;
+        }
+        .whatsapp-float {
+          bottom: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+          font-size: 25px;
+        }
+        .phone-float {
+          bottom: 20px;
+          right: 75px;
+          width: 50px;
+          height: 50px;
+          font-size: 25px;
+        }
+        .social-icons {
+          gap: 15px;
+        }
+        .social-icon {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
+        footer {
+          padding: 20px 0;
+        }
+        footer p {
+          font-size: 14px;
+          margin: 0;
+          padding: 0;
+        }
+        .navbar-container {
+          padding: 10px 20px;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-menu {
+          gap: 15px;
+          font-size: 0.9rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        body {
+          padding-top: 100px;
+        }
+      }
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 1.8rem;
+          line-height: 1.2;
+        }
+        .hero .subtitle {
+          font-size: 0.9rem;
+          letter-spacing: 1px;
+        }
+        .hero .tagline {
+          font-size: 0.85rem;
+        }
+        .hero .btn-order {
+          font-size: 0.8rem;
+          padding: 8px 20px;
+        }
+        .section-title {
+          font-size: 1.3rem;
+        }
+        .product-card {
+          margin-bottom: 20px;
+        }
+        .product-card h4 {
+          font-size: 0.95rem;
+        }
+        .product-card p {
+          font-size: 0.8rem;
+        }
+        .order-btn {
+          font-size: 0.8rem;
+          padding: 6px 15px;
+        }
+        .navbar-container {
+          padding: 8px 15px;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .logo {
+          font-size: 0.85rem;
+          justify-content: center;
+        }
+        .logo-img {
+          width: 35px;
+          height: 35px;
+          margin-right: 8px;
+        }
+        .nav-menu {
+          gap: 10px;
+          font-size: 0.8rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .nav-menu a {
+          padding: 5px 10px;
+          border-radius: 15px;
+          background: rgba(86, 171, 47, 0.1);
+        }
+        .nav-menu a:hover {
+          background: rgba(86, 171, 47, 0.2);
+        }
+        body {
+          padding-top: 90px;
+        }
+        .whatsapp-float {
+          bottom: 15px;
+          right: 15px;
+          width: 45px;
+          height: 45px;
+          font-size: 22px;
+        }
+        .phone-float {
+          bottom: 15px;
+          right: 65px;
+          width: 45px;
+          height: 45px;
+          font-size: 22px;
+        }
+        .social-icons {
+          gap: 12px;
+        }
+        .social-icon {
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+        }
+        .order-modal {
+          padding: 20px;
+          margin: 20px;
+        }
+        .modal-header h3 {
+          font-size: 1.2rem;
+        }
+        .form-group input {
+          padding: 10px 12px;
+          font-size: 0.9rem;
+        }
+        .modal-footer button {
+          padding: 10px;
+          font-size: 0.9rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero {
+          padding: 60px 0;
+        }
+        .hero h1 {
+          font-size: 1.6rem;
+        }
+        .hero .subtitle {
+          font-size: 0.85rem;
+        }
+        .hero .tagline {
+          font-size: 0.8rem;
+        }
+        .section-title {
+          font-size: 1.2rem;
+        }
+        .product-card img {
+          height: 150px;
+        }
+        .navbar-container {
+          padding: 6px 12px;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .logo {
+          font-size: 0.8rem;
+          justify-content: center;
+        }
+        .logo-img {
+          width: 30px;
+          height: 30px;
+          margin-right: 6px;
+        }
+        .nav-menu {
+          gap: 8px;
+          font-size: 0.75rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .nav-menu a {
+          padding: 4px 8px;
+          border-radius: 12px;
+          background: rgba(86, 171, 47, 0.1);
+        }
+        .nav-menu a:hover {
+          background: rgba(86, 171, 47, 0.2);
+        }
+        body {
+          padding-top: 80px;
+        }
+        .order-modal {
+          width: 95%;
+          padding: 15px;
+        }
+        .modal-header h3 {
+          font-size: 1.1rem;
+        }
+        .form-group {
+          margin-bottom: 15px;
+        }
+        .form-group label {
+          font-size: 0.85rem;
+        }
+        .form-group input {
+          padding: 8px 10px;
+          font-size: 0.85rem;
+        }
+        .modal-footer {
+          gap: 10px;
+        }
+        .modal-footer button {
+          padding: 8px;
+          font-size: 0.85rem;
+        }
+      }
+      @media (max-width: 360px) {
+        .hero h1 {
+          font-size: 1.4rem;
+        }
+        .navbar-container {
+          padding: 5px 10px;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .logo {
+          font-size: 0.75rem;
+          justify-content: center;
+        }
+        .logo-img {
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
+        }
+        .nav-menu {
+          gap: 6px;
+          font-size: 0.7rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        .nav-menu a {
+          padding: 3px 6px;
+          border-radius: 10px;
+          background: rgba(86, 171, 47, 0.1);
+        }
+        .nav-menu a:hover {
+          background: rgba(86, 171, 47, 0.2);
+        }
+        body {
+          padding-top: 70px;
+        }
+        .product-card h4 {
+          font-size: 0.9rem;
+        }
+        .product-card p {
+          font-size: 0.75rem;
+        }
+        .order-btn {
+          font-size: 0.75rem;
+          padding: 5px 12px;
+        }
+      }
+      .header_flex {
+        gap: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .header_flex h6 {
+        padding: 0;
+        margin: 0;
+      }
+      .contact-info-card:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+      }
+      #quickOrderForm .form-control:focus,
+      #quickOrderForm .form-select:focus {
+        box-shadow: 0 0 0 0.25rem rgba(86, 171, 47, 0.25) !important;
+        border-color: #56ab2f !important;
+      }
+      .contact-success-message {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        display: none;
+        animation: slideInUp 0.5s ease;
+      }
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .delivery-marquee {
+        font-size: 0.8rem;
+        font-weight: 500;
+        /* letter-spacing: 0.5px; */
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        text-align: center;
+        align-items: center;
+      }
+      .delivery-marquee marquee span {
+        display: inline-block;
+        padding: 0 0px;
+      }
+      .delivery-marquee i {
+        animation: pulse 2s infinite;
+      }
+      .blink {
+        animation: blink 1.5s infinite;
+        font-weight: 600;
+      }
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        25%,
+        75% {
+          opacity: 0.3;
+        }
+      }
+      .cart-icon {
+        position: relative;
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 12px;
+        background: rgba(86, 171, 47, 0.1);
+      }
+      .cart-icon:hover {
+        background: rgba(86, 171, 47, 0.2);
+      }
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #dc3545;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+      .cart-items {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      .cart-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      .cart-item:hover {
+        background: #e9ecef;
+      }
+      .cart-item .badge {
+        font-size: 0.75rem;
+      }
+      .cart-item .btn-danger {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+      }
+      .cart-message {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        z-index: 1000;
+        animation: slideInRight 0.3s ease;
+      }
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+        justify-content: center;
+        background: rgba(86, 171, 47, 0.08);
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 1px solid rgba(86, 171, 47, 0.2);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .quantity-selector:hover {
+        background: rgba(86, 171, 47, 0.12);
+        border-color: rgba(86, 171, 47, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .quantity-btn {
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #56ab2f, #a8e063);
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(86, 171, 47, 0.25);
+        position: relative;
+      }
+      .quantity-btn:hover {
+        background: linear-gradient(135deg, #4a8f2a, #96d658);
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(86, 171, 47, 0.35);
+      }
+      .quantity-btn:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 6px rgba(86, 171, 47, 0.2);
+      }
+      .quantity-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .quantity-btn:hover::before {
+        opacity: 1;
+      }
+      .quantity-input {
+        width: 55px;
+        text-align: center;
+        border: 2px solid #56ab2f;
+        border-radius: 15px;
+        padding: 10px 8px;
+        font-size: 18px;
+        font-weight: 600;
+        background: white;
+        color: #56ab2f;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        line-height: 1;
+      }
+      .quantity-input:focus {
+        outline: none;
+        border-color: #4a8f2a;
+        box-shadow:
+          0 0 0 3px rgba(86, 171, 47, 0.15),
+          inset 0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: scale(1.02);
+      }
+      .quantity-input::-webkit-inner-spin-button,
+      .quantity-input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .quantity-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #56ab2f;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-right: 2px;
+      }
+      .quantity-display {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        padding: 6px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(86, 171, 47, 0.15);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+      .quantity-display-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: #2c3e50;
+        min-width: 70px;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .qty-box {
+        background: #eaf4ec;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+      .qty-label {
+        font-weight: 600;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .qty-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .qty-control button {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #56ab2f, #a8e063);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        box-shadow: 0 3px 10px rgba(86, 171, 47, 0.25);
+      }
+
+      .qty-control button:hover {
+        background: #218838;
+      }
+
+      .qty-control span {
+        min-width: 40px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+        color: #2c3e50;
+        background: white;
+        border: 2px solid #56ab2f;
+        border-radius: 12px;
+        padding: 6px 8px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+      .product-card span {
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with Logo -->
+    <header>
+      <!-- Delivery Info Marquee -->
+      <div class="delivery-marquee bg-success text-white py-2">
+        <marquee behavior="scroll" direction="left" scrollamount="3">
+          <span class="mx-3 text-danger blink"
+            ><i class="fas fa-truck me-2"></i>Free Delivery Above ₹199 (Within 2
+            KMS)</span
+          >
+          <span class="mx-3"
+            ><i class="fas fa-clock me-2"></i>Delivery Time: 30-45 minutes</span
+          >
+          <span class="mx-3"
+            ><i class="fas fa-phone-alt me-2"></i>24/7 Order Available</span
+          >
+          <span class="mx-3"
+            ><i class="fas fa-leaf me-2"></i>100% Fresh & Natural</span
+          >
+        </marquee>
+      </div>
+
+      <div class="navbar-container">
+        <a href="#" class="logo">
+          <img src="logo.jpeg" alt="Love Fruits Bowl Logo" class="logo-img" />
+          Love Fruits Bowl
+        </a>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Love Bowls</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="cart.html" class="cart-icon" id="headerCart">
+                Bowl
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <h1>LOVE FRUITS BOWLS</h1>
+        <p class="subtitle">FRESH • HEALTHY • HYGIENIC</p>
+        <p class="tagline">100% Natural & Daily Fresh</p>
+        <!-- <a href="#contact" class="btn-order">Order Now</a> -->
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5" id="products">
+      <div class="container">
+        <h2 class="text-center mb-4 fade-in">Love Bowls</h2>
+        <div id="productsContainer" class="row g-4">
+          <!-- Products will be dynamically loaded here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-5"
+      style="
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
+        display: none;
+      "
+    >
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="contact-heading">Get In Touch</h2>
+          <p class="lead">
+            We'd love to hear from you! Order your fresh fruits bowl today.
+          </p>
+          <div
+            class="mx-auto"
+            style="
+              width: 80px;
+              height: 4px;
+              background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+              border-radius: 2px;
+            "
+          ></div>
+        </div>
+
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-4">
+            <div
+              class="contact-info-card bg-white text-dark p-4 rounded-4 shadow-lg mb-4"
+              style="transform: translateY(0); transition: all 0.3s ease"
+            >
+              <div class="text-center mb-3">
+                <div
+                  class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-gradient mb-3"
+                  style="width: 60px; height: 60px"
+                >
+                  <i class="fas fa-phone-alt text-white fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Call Us</h5>
+                <p class="mb-0">+91 9047343441</p>
+                <small class="text-muted">Available 24/7</small>
+              </div>
+            </div>
+
+            <div
+              class="contact-info-card bg-white text-dark p-4 rounded-4 shadow-lg mb-4"
+              style="transform: translateY(0); transition: all 0.3s ease"
+            >
+              <div class="text-center mb-3">
+                <div
+                  class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-gradient mb-3"
+                  style="width: 60px; height: 60px"
+                >
+                  <i class="fab fa-whatsapp text-white fs-4"></i>
+                </div>
+                <h5 class="fw-bold">WhatsApp Order</h5>
+                <p class="mb-0">+91 9047343441</p>
+                <small class="text-muted">Quick response</small>
+              </div>
+            </div>
+
+            <div
+              class="contact-info-card bg-white text-dark p-4 rounded-4 shadow-lg"
+              style="transform: translateY(0); transition: all 0.3s ease"
+            >
+              <div class="text-center mb-3">
+                <div
+                  class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-gradient mb-3"
+                  style="width: 60px; height: 60px"
+                >
+                  <i class="fas fa-map-marker-alt text-white fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Service Area</h5>
+                <p class="mb-0">City Wide Delivery</p>
+                <small class="text-muted">Fresh to your doorstep</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="bg-white rounded-4 shadow-lg p-5">
+              <h3 class="text-center mb-4 fw-bold text-dark">
+                Quick Order Form
+              </h3>
+              <form id="quickOrderForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Your Name *</label>
+                    <input
+                      type="text"
+                      class="form-control border-0 bg-light"
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold"
+                      >Mobile Number *</label
+                    >
+                    <input
+                      type="tel"
+                      class="form-control border-0 bg-light"
+                      placeholder="Enter mobile number"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold"
+                      >Select Product *</label
+                    >
+                    <select class="form-select border-0 bg-light" required>
+                      <option value="">Choose your favorite bowl...</option>
+                      <option
+                        value="Fresh Sprouts
+
+"
+                      >
+                        Fresh Sprouts
+                      </option>
+                      <option
+                        value="Fresh Juice
+"
+                      >
+                        Fresh Juice
+                      </option>
+                      <option value="Fresh Fruits Salad & Veg Salad">
+                        Fresh Fruits Salad & Veg Salad
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Quantity</label>
+                    <input
+                      type="number"
+                      class="form-control border-0 bg-light"
+                      placeholder="How many bowls?"
+                      min="1"
+                      value="1"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-semibold"
+                      >Delivery Address *</label
+                    >
+                    <textarea
+                      class="form-control border-0 bg-light"
+                      rows="3"
+                      placeholder="Enter your complete delivery address"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="col-md-6 d-none">
+                    <label class="form-label fw-semibold">Preferred Time</label>
+                    <input type="time" class="form-control border-0 bg-light" />
+                  </div>
+                  <div class="col-12 text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-lg px-5 py-3 rounded-pill text-white fw-semibold"
+                      style="
+                        background: linear-gradient(45deg, #56ab2f, #a8e063);
+                        border: none;
+                        transition: all 0.3s ease;
+                        font-size: 0.8rem;
+                      "
+                    >
+                      <i class="fas fa-shopping-cart me-2"></i>Place Order Now
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="text-center mt-4">
+                <p class="mb-2 text-muted">Or reach out directly:</p>
+                <div class="d-flex justify-content-center gap-3">
+                  <a
+                    href="https://wa.me/9047343441"
+                    class="btn btn-success btn-lg rounded-circle"
+                    style="width: 50px; height: 50px"
+                  >
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                  <a
+                    href="tel:9047343441"
+                    class="btn btn-primary btn-lg rounded-circle"
+                    style="width: 50px; height: 50px"
+                  >
+                    <i class="fas fa-phone"></i>
+                  </a>
+                </div>
+                <p
+                  style="
+                    padding: 0;
+                    margin: 0;
+                    color: #212529bf;
+                    font-size: 0.8rem;
+                    margin: 1rem 0 0;
+                  "
+                >
+                  © 2026 Love Fruits Bowl - All Rights Reserved
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 d-none">
+          <div
+            class="d-inline-flex align-items-center gap-3 bg-white bg-opacity-10 px-4 py-2 rounded-full"
+          >
+            <i class="fas fa-clock"></i>
+            <span>Delivery Time: 30-45 minutes</span>
+          </div>
+          <div
+            class="d-inline-flex align-items-center gap-3 bg-white bg-opacity-10 px-4 py-2 rounded-full ms-3"
+          >
+            <i class="fas fa-truck"></i>
+            <span>Free Delivery Above ₹199</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center">
+      <p>© 2026 Love Fruits Bowl - All Rights Reserved</p>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/9047343441"
+      target="_blank"
+      class="whatsapp-float d-none"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Phone Call Floating Button -->
+    <a href="tel:9047343441" class="phone-float d-none">
+      <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- Cart Modal -->
+    <div class="modal-overlay d-none" id="cartModal">
+      <div class="order-modal">
+        <button class="close-modal" onclick="closeCartModal()">&times;</button>
+        <div class="modal-header">
+          <div class="header_flex">
+            <h6>Your Cart</h6>
+            <span class="badge bg-success" id="cartItemCount">0 items</span>
+          </div>
+        </div>
+        <div id="cartItems" class="cart-items">
+          <p class="text-center text-muted">Your cart is empty</p>
+        </div>
+        <div class="modal-footer">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold">Total: ₹<span id="cartTotal">0</span></span>
+            <button
+              type="button"
+              class="btn-submit"
+              onclick="proceedToCheckout()"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+      <div class="order-modal">
+        <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+        <div class="modal-header">
+          <div class="header_flex">
+            <h6>Place Your Order</h6>
+            <span class="badge bg-success" id="selectedProduct">Product:</span>
+          </div>
+        </div>
+        <form id="orderForm">
+          <div class="form-group">
+            <label for="product">Select Product *</label>
+            <select id="product" name="product" required>
+              <option value="">Choose your favorite bowl...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile Number *</label>
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              required
+              placeholder="Enter your mobile number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <textarea
+              class="form-control"
+              rows="5"
+              id="address"
+              name="address"
+              placeholder="Enter your delivery address"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              placeholder="How many bowls?"
+              min="1"
+              value="1"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn-cancel"
+              onclick="closeOrderModal()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn-submit">Submit Order</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script>
+      /* ===============================
+   CART INITIALIZATION
+================================ */
+      let cart = JSON.parse(localStorage.getItem("fruitsCart")) || [];
+
+      /* ===============================
+   UPDATE HEADER CART COUNT
+================================ */
+      function updateCartCount() {
+        const cartCountElement = document.getElementById("cartCount");
+
+        const totalItems = cart.reduce(
+          (total, item) => total + item.quantity,
+          0,
+        );
+
+        if (cartCountElement) {
+          cartCountElement.textContent = totalItems;
+        }
+      }
+
+      /* ===============================
+   DYNAMIC PRODUCT RENDERING
+================================ */
+      function renderProducts() {
+        const productsContainer = document.getElementById("productsContainer");
+        const products = getAvailableProducts();
+
+        if (!productsContainer) return;
+
+        productsContainer.innerHTML = "";
+
+        products.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.className = "col-sm-3";
+          productCard.innerHTML = `
+            <div class="card product-card p-3 text-center fade-in">
+              ${product.badge ? `<span class="badge bg-success position-absolute top-0 start-50 translate-middle-x mt-2">${product.badge}</span>` : ""}
+              <img
+                src="${product.image}"
+                alt="${product.name}"
+                class="card-img-top mb-3"
+                style="border-radius: 10px; height: 200px; object-fit: cover"
+              />
+              <h4>${product.name}</h4>
+              <p>${product.description}</p>
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="fw-bold text-success">₹${product.price}</span>
+                <small class="text-muted">Fresh & Hygienic</small>
+              </div>
+              <div class="qty-box">
+                <span class="qty-label d-none">Qty</span>
+
+                <div class="qty-control">
+                  <button onclick="decreaseQuantity('${product.id}')">
+                    −
+                  </button>
+
+                  <span id="display-${product.id}">0</span>
+
+                  <button onclick="increaseQuantity('${product.id}')">
+                    +
+                  </button>
+                </div>
+
+                <input type="hidden" id="qty-${product.id}" value="1" />
+              </div>
+            </div>
+          `;
+          productsContainer.appendChild(productCard);
+        });
+
+        // Re-observe new elements for animations
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+        );
+
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((el) => observer.observe(el));
+      }
+
+      function populateProductDropdown() {
+        const productSelect = document.getElementById("product");
+        const products = getAvailableProducts();
+
+        if (!productSelect) return;
+
+        // Clear existing options except the first one
+        productSelect.innerHTML =
+          '<option value="">Choose your favorite bowl...</option>';
+
+        products.forEach((product) => {
+          const option = document.createElement("option");
+          option.value = product.name;
+          option.textContent = `${product.name} - ₹${product.price}`;
+          productSelect.appendChild(option);
+        });
+      }
+
+      /* ===============================
+   QUANTITY BUTTONS (+ / -)
+================================ */
+      function increaseQuantity(productId) {
+        const hiddenInput = document.getElementById(`qty-${productId}`);
+        const display = document.getElementById(`display-${productId}`);
+
+        let qty = parseInt(hiddenInput.value) || 0;
+        if (qty < 10) {
+          qty++;
+          hiddenInput.value = qty;
+          display.textContent = qty;
+
+          // Auto update cart
+          updateCartQuantity(productId, qty);
+        }
+      }
+
+      function decreaseQuantity(productId) {
+        const hiddenInput = document.getElementById(`qty-${productId}`);
+        const display = document.getElementById(`display-${productId}`);
+
+        let qty = parseInt(hiddenInput.value) || 0;
+        if (qty > 0) {
+          qty--;
+          hiddenInput.value = qty;
+          display.textContent = qty;
+
+          // Auto update cart
+          updateCartQuantity(productId, qty);
+        }
+      }
+
+      function updateCartQuantity(productId, newQuantity) {
+        const product = getProduct(productId);
+        if (!product) return;
+
+        const existingItem = cart.find((item) => item.name === product.name);
+
+        if (existingItem) {
+          if (newQuantity === 0) {
+            // Remove item from cart if quantity is 0
+            cart = cart.filter((item) => item.name !== product.name);
+          } else {
+            // Update existing item quantity
+            existingItem.quantity = newQuantity;
+          }
+        } else if (newQuantity > 0) {
+          // Add new item to cart
+          cart.push({
+            name: product.name,
+            price: product.price,
+            quantity: newQuantity,
+          });
+        }
+
+        // Save and update display
+        localStorage.setItem("fruitsCart", JSON.stringify(cart));
+        updateCartCount();
+
+        // Show feedback message
+        if (newQuantity > 0) {
+          showCartMessage(`${newQuantity} x ${product.name} in bowl`);
+        }
+      }
+
+      /* ===============================
+   PAGE LOAD INIT
+================================ */
+      document.addEventListener("DOMContentLoaded", () => {
+        // Clear cart on page refresh
+        localStorage.removeItem("fruitsCart");
+        cart = [];
+
+        // Initialize products
+        renderProducts();
+        populateProductDropdown();
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Sync quantities with cart (will be 0 after clearing)
+        syncQuantitiesWithCart();
+
+        // Order button click handlers
+        const orderButtons = document.querySelectorAll(".order-btn");
+        orderButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const productName = this.getAttribute("data-product");
+            openOrderModal(productName);
+          });
+        });
+
+        // Form submission
+        const orderForm = document.getElementById("orderForm");
+        if (orderForm) {
+          orderForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = {
+              product: document.getElementById("product").value,
+              name: document.getElementById("name").value,
+              mobile: document.getElementById("mobile").value,
+              address: document.getElementById("address").value,
+              quantity: document.getElementById("quantity").value,
+            };
+
+            // Show success message
+            alert("Thank you for your order! We will contact you soon.");
+            closeOrderModal();
+          });
+        }
+
+        // Close modal when clicking outside
+        const modalOverlay = document.getElementById("orderModal");
+        if (modalOverlay) {
+          modalOverlay.addEventListener("click", function (e) {
+            if (e.target === modalOverlay) {
+              closeOrderModal();
+            }
+          });
+        }
+
+        // Quick Order Form Handler
+        const quickOrderForm = document.getElementById("quickOrderForm");
+        if (quickOrderForm) {
+          quickOrderForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+              name: this.querySelector('input[type="text"]').value,
+              mobile: this.querySelector('input[type="tel"]').value,
+              product: this.querySelector("select").value,
+              address: this.querySelector("textarea").value,
+              quantity: this.querySelector('input[type="number"]').value,
+              preferredTime: this.querySelector('input[type="time"]').value,
+            };
+
+            // Create WhatsApp message
+            const whatsappMessage =
+              `*New Order - Love Fruits Bowl*%0A%0A` +
+              `👤 Name: ${formData.name}%0A` +
+              `📱 Mobile: ${formData.mobile}%0A` +
+              `🥗 Product: ${formData.product}%0A` +
+              `📦 Quantity: ${formData.quantity}%0A` +
+              `🏠 Address: ${formData.address}%0A` +
+              `⏰ Preferred Time: ${formData.preferredTime || "ASAP"}%0A%0A` +
+              `*Please confirm this order*%0A` +
+              `✅ Yes - Confirm Order%0A` +
+              `❌ No - Cancel Order`;
+
+            // Open WhatsApp with pre-filled message
+            const whatsappUrl = `https://wa.me/9047343441?text=${whatsappMessage}`;
+            window.open(whatsappUrl, "_blank");
+
+            // Show success message
+            const successDiv = document.createElement("div");
+            successDiv.className = "contact-success-message";
+            successDiv.innerHTML = `
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-2"></i>
+                <span>Thank you! Your order details have been sent to WhatsApp. We'll contact you shortly to confirm.</span>
+              </div>
+            `;
+
+            // Insert after form
+            this.parentNode.insertBefore(successDiv, this.nextSibling);
+            successDiv.style.display = "block";
+
+            // Reset form
+            this.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+              successDiv.style.display = "none";
+              successDiv.remove();
+            }, 5000);
+          });
+        }
+
+        // Scroll-triggered animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        const animatedElements = document.querySelectorAll(
+          ".fade-in, .slide-in-left, .slide-in-right",
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+
+      /* ===============================
+   SYNC QUANTITIES WITH CART
+================================ */
+      function syncQuantitiesWithCart() {
+        const productIds = {
+          "fresh-cut-fruits": "Fresh Cut Fruits",
+          "fresh-sprouts": "Fresh Sprouts",
+          "fresh-juice": "Fresh Juice",
+          "fresh-salad": "Fresh Fruits Salad & Veg Salad",
+        };
+
+        Object.keys(productIds).forEach((productId) => {
+          const productName = productIds[productId];
+          const cartItem = cart.find((item) => item.name === productName);
+          const quantity = cartItem ? cartItem.quantity : 0;
+
+          const hiddenInput = document.getElementById(`qty-${productId}`);
+          const display = document.getElementById(`display-${productId}`);
+
+          if (hiddenInput) hiddenInput.value = quantity;
+          if (display) display.textContent = quantity;
+        });
+      }
+
+      /* ===============================
+   SUCCESS MESSAGE POPUP
+================================ */
+      function showCartMessage(message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "cart-message";
+        messageDiv.style.cssText = `
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          background: linear-gradient(45deg, #28a745, #20c997);
+          color: white;
+          padding: 15px 20px;
+          border-radius: 10px;
+          z-index: 1000;
+          animation: slideInRight 0.3s ease;
+        `;
+        messageDiv.innerHTML = `
+          <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle me-2"></i>
+            <span>${message}</span>
+          </div>
+        `;
+
+        document.body.appendChild(messageDiv);
+
+        setTimeout(() => {
+          messageDiv.remove();
+        }, 2000);
+      }
+
+      /* ===============================
+   ORDER MODAL
+================================ */
+      function openOrderModal(productName) {
+        const modal = document.getElementById("orderModal");
+        const selectedProduct = document.getElementById("selectedProduct");
+
+        selectedProduct.textContent = "Product: " + productName;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeOrderModal() {
+        document.getElementById("orderModal").classList.remove("active");
+        document.body.style.overflow = "auto";
+        document.getElementById("orderForm").reset();
+      }
+
+      /* ===============================
+   PAGE LOAD INIT
+================================ */
+      document.addEventListener("DOMContentLoaded", () => {
+        updateCartCount();
+
+        // Order button click handlers
+        const orderButtons = document.querySelectorAll(".order-btn");
+        orderButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const productName = this.getAttribute("data-product");
+            openOrderModal(productName);
+          });
+        });
+
+        // Form submission
+        const orderForm = document.getElementById("orderForm");
+        if (orderForm) {
+          orderForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = {
+              product: document.getElementById("product").value,
+              name: document.getElementById("name").value,
+              mobile: document.getElementById("mobile").value,
+              address: document.getElementById("address").value,
+              quantity: document.getElementById("quantity").value,
+            };
+
+            // Show success message
+            alert("Thank you for your order! We will contact you soon.");
+            closeOrderModal();
+          });
+        }
+
+        // Close modal when clicking outside
+        const modalOverlay = document.getElementById("orderModal");
+        if (modalOverlay) {
+          modalOverlay.addEventListener("click", function (e) {
+            if (e.target === modalOverlay) {
+              closeOrderModal();
+            }
+          });
+        }
+
+        // Quick Order Form Handler
+        const quickOrderForm = document.getElementById("quickOrderForm");
+        if (quickOrderForm) {
+          quickOrderForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+              name: this.querySelector('input[type="text"]').value,
+              mobile: this.querySelector('input[type="tel"]').value,
+              product: this.querySelector("select").value,
+              address: this.querySelector("textarea").value,
+              quantity: this.querySelector('input[type="number"]').value,
+              preferredTime: this.querySelector('input[type="time"]').value,
+            };
+
+            // Create WhatsApp message
+            const whatsappMessage =
+              `*New Order - Love Fruits Bowl*%0A%0A` +
+              `👤 Name: ${formData.name}%0A` +
+              `📱 Mobile: ${formData.mobile}%0A` +
+              `🥗 Product: ${formData.product}%0A` +
+              `📦 Quantity: ${formData.quantity}%0A` +
+              `🏠 Address: ${formData.address}%0A` +
+              `⏰ Preferred Time: ${formData.preferredTime || "ASAP"}%0A%0A` +
+              `*Please confirm this order*%0A` +
+              `✅ Yes - Confirm Order%0A` +
+              `❌ No - Cancel Order`;
+
+            // Open WhatsApp with pre-filled message
+            const whatsappUrl = `https://wa.me/9047343441?text=${whatsappMessage}`;
+            window.open(whatsappUrl, "_blank");
+
+            // Show success message
+            const successDiv = document.createElement("div");
+            successDiv.className = "contact-success-message";
+            successDiv.innerHTML = `
+              <div class="d-flex align-items-center">
+                <i class="fas fa-check-circle me-2"></i>
+                <span>Thank you! Your order details have been sent to WhatsApp. We'll contact you shortly to confirm.</span>
+              </div>
+            `;
+
+            // Insert after form
+            this.parentNode.insertBefore(successDiv, this.nextSibling);
+            successDiv.style.display = "block";
+
+            // Reset form
+            this.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+              successDiv.style.display = "none";
+              successDiv.remove();
+            }, 5000);
+          });
+        }
+
+        // Scroll-triggered animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        const animatedElements = document.querySelectorAll(
+          ".fade-in, .slide-in-left, .slide-in-right",
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
