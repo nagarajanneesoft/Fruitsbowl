@@ -305,8 +305,6 @@ Continue Shopping
         localStorage.setItem("fruitsCart", JSON.stringify(cart));
       }
 
-      updateCartDisplay();
-
       // Start
       function proceedToCheckout() {
         const name = document.getElementById("custName").value.trim();
@@ -358,6 +356,9 @@ Continue Shopping
           document.getElementById("addressModal"),
         )?.hide();
       }
+
+      // Initialize cart display
+      updateCartDisplay();
       // End
     </script>
   </body>
