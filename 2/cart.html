@@ -312,32 +312,41 @@ Continue Shopping
           return;
         }
 
-        let msg = "Cart Order - Love Fruits Bowl\n\n";
+        let msg = "🛒 *Cart Order - Love Fruits Bowl*\n";
+        msg += "━━━━━━━━━━━━━━\n\n";
+
         let total = 0;
         let items = 0;
 
         cart.forEach((item) => {
           items += item.quantity;
           total += item.price * item.quantity;
-          msg += `🥗 ${item.name} (Qty: ${item.quantity}) - ₹${item.price * item.quantity}\n`;
+
+          msg += `🥗 ${item.name}\n`;
+          msg += `   🔢 Qty: ${item.quantity}\n`;
+          msg += `   💰 ₹${item.price * item.quantity}\n\n`;
         });
 
         let deliveryFee = total >= 199 ? 0 : 20;
         let grandTotal = total + deliveryFee;
 
-        msg += `\nTotal Items: ${items}`;
-        msg += `\nSubtotal: ₹${total}`;
-        msg += `\nDelivery Fee: ₹${deliveryFee}`;
-        msg += `\n💰 Total Amount: ₹${grandTotal}`;
+        msg += "━━━━━━━━━━━━━━\n";
+        msg += `📦 Total Items: ${items}\n`;
+        msg += `💵 Subtotal: ₹${total}\n`;
+        msg += `🚚 Delivery Fee: ₹${deliveryFee}\n`;
+        msg += `💰 *Total Amount: ₹${grandTotal}*\n\n`;
 
-        msg += `\n\n👤 Name: ${name}`;
-        msg += `\n📞 Phone: ${phone}`;
-        msg += `\n🏠 Address: ${address}`;
-        msg += `\n💳 Payment: ${payment}`;
+        msg += "━━━━━━━━━━━━━━\n";
+        msg += `👤 Name: ${name}\n`;
+        msg += `📞 Phone: ${phone}\n`;
+        msg += `🏠 Address: ${address}\n`;
+        msg += `💳 Payment: ${payment}\n\n`;
 
-        msg += `\n\nPlease confirm this order`;
-        msg += `\n✅ Yes - Confirm Order`;
-        msg += `\n❌ No - Cancel Order`;
+        msg += "━━━━━━━━━━━━━━\n";
+        msg += "Please confirm this order\n";
+        msg += "✅ Yes - Confirm Order\n";
+        msg += "❌ No - Cancel Order\n";
+        msg += "🙏 Thank you!";
 
         const whatsappURL = `https://wa.me/9047343441?text=${encodeURIComponent(msg)}`;
 
