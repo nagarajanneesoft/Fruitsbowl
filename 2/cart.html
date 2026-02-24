@@ -93,6 +93,9 @@
         vertical-align: middle;
         font-size: 0.8rem;
       }
+      .form-control {
+        font-size: 0.8rem;
+      }
 
       @media (min-width: 768px) {
         .cart-container {
@@ -131,7 +134,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5>Delivery Details</h5>
+            <h6 style="padding: 0; margin: 0">Delivery Details</h6>
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
@@ -152,10 +155,13 @@
               placeholder="Delivery Address"
             ></textarea>
 
-            <label class="fw-bold mb-2">Payment Method</label>
+            <h6 class="fw-bold mb-2" style="font-size: 0.8rem">
+              Payment Method
+            </h6>
+
             <select
               id="paymentMethod"
-              class="form-select mb-3"
+              class="form-select mb-3 form-control"
               onchange="toggleUPI()"
             >
               <option value="COD">Cash On Delivery</option>
@@ -312,7 +318,7 @@ Continue Shopping
           return;
         }
 
-        let msg = "🛒 *Cart Order - Love Fruits Bowl*\n";
+        let msg = "🛒 *Cart Order - Love Fruits Bowl*\n\n";
         msg += "━━━━━━━━━━━━━━\n\n";
 
         let total = 0;
@@ -334,7 +340,7 @@ Continue Shopping
         msg += `📦 Total Items: ${items}\n`;
         msg += `💵 Subtotal: ₹${total}\n`;
         msg += `🚚 Delivery Fee: ₹${deliveryFee}\n`;
-        msg += `💰 *Total Amount: ₹${grandTotal}*\n\n`;
+        msg += `💰 *Total Amount: \u20B9" + ₹${grandTotal}*\n\n`;
 
         msg += "━━━━━━━━━━━━━━\n";
         msg += `👤 Name: ${name}\n`;
