@@ -53,7 +53,7 @@
       .cart-container {
         background: #fff;
         border-radius: 15px;
-        padding: 20px;
+        padding: 10px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       }
 
@@ -61,8 +61,8 @@
         background: #28a745;
         color: #fff;
         border: none;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border-radius: 5px;
       }
 
@@ -96,7 +96,12 @@
       .form-control {
         font-size: 0.8rem;
       }
-
+      @media (max-width: 767px) {
+        .checkout-btn {
+          padding: 10px 10px !important;
+          font-size: 12px !important;
+        }
+      }
       @media (min-width: 768px) {
         .cart-container {
           max-width: 1100px;
@@ -209,7 +214,8 @@ Continue Shopping
         }
 
         let html = `
-<table class="table table-bordered text-center">
+        <div class="table-responsive">
+<table class="table table-bordered text-left">
 <thead class="table-success">
 <tr>
 <th>Product</th>
@@ -232,7 +238,7 @@ Continue Shopping
 <tr>
 <td><b>${item.name}</b></td>
 
-<td>
+<td class="d-flex align-items-center">
 <button class="quantity-btn" onclick="updateQuantity(${i},-1)">-</button>
 <span class="mx-2">${item.quantity}</span>
 <button class="quantity-btn" onclick="updateQuantity(${i},1)">+</button>
@@ -248,7 +254,7 @@ Continue Shopping
 </tr>`;
         });
 
-        html += "</tbody></table>";
+        html += "</tbody></table></div>";
         cartItems.innerHTML = html;
 
         let deliveryFee = total >= 199 ? 0 : 20;
@@ -278,11 +284,11 @@ Continue Shopping
 <a href="#" class="checkout-btn"
 data-bs-toggle="modal"
 data-bs-target="#addressModal">
-<i class="fab fa-whatsapp me-1"></i> Checkout via WhatsApp
+Checkout via WhatsApp
 </a>
 
 <a href="index.html" class="checkout-btn">
-Continue Shopping
+Continue Bowls
 </a>
 
 </div>`;
