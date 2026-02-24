@@ -1052,6 +1052,7 @@
             <li><a href="#contact">Contact</a></li>
             <li>
               <a href="cart.html" class="cart-icon" id="headerCart">
+                Bowl
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
               </a>
@@ -1067,7 +1068,7 @@
         <h1>LOVE FRUITS BOWLS</h1>
         <p class="subtitle">FRESH • HEALTHY • HYGIENIC</p>
         <p class="tagline">100% Natural & Daily Fresh</p>
-        <a href="#contact" class="btn-order">Order Now</a>
+        <!-- <a href="#contact" class="btn-order">Order Now</a> -->
       </div>
     </section>
 
@@ -1463,7 +1464,7 @@
     </a>
 
     <!-- Cart Modal -->
-    <div class="modal-overlay" id="cartModal">
+    <div class="modal-overlay d-none" id="cartModal">
       <div class="order-modal">
         <button class="close-modal" onclick="closeCartModal()">&times;</button>
         <div class="modal-header">
@@ -1778,7 +1779,8 @@
     </script>
 
     <script>
-      document.getElementById("cartCount").innerText = 0;
+      // Initialize cart count on page load
+      updateCartCount();
     </script>
   </body>
 </html>
