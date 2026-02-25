@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Love Fruits Bowl</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .login-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 400px;
+        width: 100%;
+        margin: 20px;
+      }
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .login-header img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+      .login-header h2 {
+        color: #56ab2f;
+        font-weight: 700;
+        margin: 0;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: #56ab2f;
+      }
+      .otp-inputs {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .otp-inputs input {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+      }
+      .btn-login {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .btn-login:hover {
+        transform: translateY(-2px);
+      }
+      .btn-login:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .otp-section {
+        display: none;
+      }
+      .resend-otp {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .resend-otp a {
+        color: #56ab2f;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .resend-otp a:hover {
+        text-decoration: underline;
+      }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #56ab2f;
+        text-decoration: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .back-btn:hover {
+        transform: scale(1.1);
+        color: #56ab2f;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="login-container">
+      <div class="login-header">
+        <img
+          src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&dpr=1"
+          alt="Love Fruits Bowl Logo"
+        />
+        <h2>Login to Love Fruits Bowl</h2>
+        <p class="text-muted">Enter your mobile number to continue</p>
+      </div>
+
+      <!-- Mobile Number Section -->
+      <div id="mobileSection">
+        <form id="mobileForm">
+          <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input
+              type="tel"
+              id="mobileNumber"
+              name="mobileNumber"
+              placeholder="Enter your 10-digit mobile number"
+              maxlength="10"
+              pattern="[0-9]{10}"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-login">
+            <i class="fas fa-mobile-alt me-2"></i>Send OTP
+          </button>
+        </form>
+      </div>
+
+      <!-- OTP Section -->
+      <div id="otpSection" class="otp-section">
+        <form id="otpForm">
+          <div class="form-group">
+            <label>Enter OTP</label>
+            <p class="text-muted">Sent to: <span id="mobileDisplay"></span></p>
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+              <input type="text" maxlength="1" pattern="[0-9]" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-login">
+            <i class="fas fa-check-circle me-2"></i>Verify OTP
+          </button>
+        </form>
+        <div class="resend-otp">
+          <a href="#" id="resendOtp">Resend OTP</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mobile number form submission
+      document
+        .getElementById("mobileForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const mobileNumber = document.getElementById("mobileNumber").value;
+
+          // Validate mobile number
+          if (mobileNumber.length !== 10 || !/^[0-9]+$/.test(mobileNumber)) {
+            alert("Please enter a valid 10-digit mobile number");
+            return;
+          }
+
+          // Generate random OTP (6 digits)
+          const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+          // Store OTP and mobile number in localStorage
+          localStorage.setItem("currentOTP", otp);
+          localStorage.setItem("mobileNumber", mobileNumber);
+
+          // Show OTP section
+          document.getElementById("mobileSection").style.display = "none";
+          document.getElementById("otpSection").style.display = "block";
+          document.getElementById("mobileDisplay").textContent = mobileNumber;
+
+          // Show OTP in alert for demo (in production, this would be sent via SMS)
+          alert(`Demo OTP: ${otp}`);
+
+          // Focus first OTP input
+          document.querySelector(".otp-inputs input").focus();
+        });
+
+      // OTP form submission
+      document
+        .getElementById("otpForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const otpInputs = document.querySelectorAll(".otp-inputs input");
+          const enteredOTP = Array.from(otpInputs)
+            .map((input) => input.value)
+            .join("");
+
+          const storedOTP = localStorage.getItem("currentOTP");
+
+          if (enteredOTP === storedOTP) {
+            // Set login status
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem(
+              "userMobile",
+              localStorage.getItem("mobileNumber"),
+            );
+
+            // Redirect to cart page
+            window.location.href = "cart.html";
+          } else {
+            alert("Invalid OTP. Please try again.");
+            // Clear OTP inputs
+            otpInputs.forEach((input) => (input.value = ""));
+            document.querySelector(".otp-inputs input").focus();
+          }
+        });
+
+      // OTP input auto-focus
+      document.querySelectorAll(".otp-inputs input").forEach((input, index) => {
+        input.addEventListener("input", function () {
+          if (this.value.length === 1 && index < 5) {
+            document.querySelectorAll(".otp-inputs input")[index + 1].focus();
+          }
+        });
+
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Backspace" && this.value === "" && index > 0) {
+            document.querySelectorAll(".otp-inputs input")[index - 1].focus();
+          }
+        });
+      });
+
+      // Resend OTP
+      document
+        .getElementById("resendOtp")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const mobileNumber = localStorage.getItem("mobileNumber");
+          const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+          localStorage.setItem("currentOTP", otp);
+
+          alert(`New OTP sent: ${otp}`);
+
+          // Clear OTP inputs
+          document
+            .querySelectorAll(".otp-inputs input")
+            .forEach((input) => (input.value = ""));
+          document.querySelector(".otp-inputs input").focus();
+        });
+
+      // Check if already logged in
+      if (localStorage.getItem("isLoggedIn") === "true") {
+        window.location.href = "cart.html";
+      }
+    </script>
+  </body>
+</html>
